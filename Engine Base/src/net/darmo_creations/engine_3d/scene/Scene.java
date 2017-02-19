@@ -21,7 +21,7 @@ public class Scene implements EngineComponent {
     // TEMP
     this.props.add(new Plane(new Point3f(0, 0, -100), new Dimension2f(100, 100), new Vector3f(0, 0, 45)));
     this.props.get(0).setColor(Color.green);
-    this.props.add(new Sphere(new Point3f(0, 0, -100), 10, new Vector3f()));
+    this.props.add(new Sphere(new Point3f(-50, 0, -100), 10, new Vector3f()));
     this.props.get(1).setColor(Color.cyan);
   }
 
