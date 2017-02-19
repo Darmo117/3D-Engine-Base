@@ -4,12 +4,6 @@ public final class Dimension2f {
   private final float width, height;
   private final Vector2f widthVector, heightVector;
 
-  /**
-   * Crée une dimension 3D.
-   * 
-   * @param width la largeur
-   * @param height la hauteur
-   */
   public Dimension2f(float width, float height) {
     this.width = width;
     this.height = height;

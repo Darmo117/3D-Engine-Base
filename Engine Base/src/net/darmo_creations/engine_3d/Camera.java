@@ -46,7 +46,7 @@ public class Camera implements EngineComponent {
    * @param position the position
    */
   public Camera(Vector3f position) {
-    this.position = new Vector3f(position);
+    this.position = position;
     this.rotation = new Vector2f();
     this.speed = new Vector3f();
     this.dir = new Vector3f();
@@ -80,7 +80,7 @@ public class Camera implements EngineComponent {
    * @return this camera's position
    */
   public Vector3f getPosition() {
-    return new Vector3f(this.position);
+    return this.position;
   }
 
   /**
@@ -89,15 +89,14 @@ public class Camera implements EngineComponent {
    * @param position the new location
    */
   public void setPosition(Vector3f position) {
-    this.position = new Vector3f(position);
+    this.position = position;
   }
 
   @Override
   public void update() {
-    this.dir.mult(0);
+    this.dir = new Vector3f();
 
-    this.rotation.addX(-Mouse.getDY() * .4f);
-    this.rotation.addY(Mouse.getDX() * .4f);
+    this.rotation.add(-Mouse.getDY() * .4f, Mouse.getDX() * .4f);
 
     if (this.rotation.getX() > 90)
       this.rotation.setX(90);
@@ -121,11 +120,13 @@ public class Camera implements EngineComponent {
       this.dir.setZ(this.dir.getZ() * SPRINT_COEF);
     }
 
-    this.speed.add(new Vector3f( //
-        (float) (this.dir.getX() * Math.cos(Math.toRadians(this.rotation.getY())) - this.dir.getZ() * Math.sin(Math.toRadians(this.rotation.getY()))), //
-        this.dir.getY(), //
-        (float) (this.dir.getZ() * Math.cos(Math.toRadians(this.rotation.getY())) + this.dir.getX() * Math.sin(Math.toRadians(this.rotation.getY())))) //
+    // #f:0
+    this.speed.add(
+        (float) (this.dir.getX() * Math.cos(Math.toRadians(this.rotation.getY())) - this.dir.getZ() * Math.sin(Math.toRadians(this.rotation.getY()))),
+        this.dir.getY(),
+        (float) (this.dir.getZ() * Math.cos(Math.toRadians(this.rotation.getY())) + this.dir.getX() * Math.sin(Math.toRadians(this.rotation.getY())))
     );
+    // #f:1
 
     this.position.add(this.speed);
     this.speed.mult(0.9f);

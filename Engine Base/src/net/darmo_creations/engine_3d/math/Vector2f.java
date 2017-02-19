@@ -2,15 +2,11 @@ package net.darmo_creations.engine_3d.math;
 
 import java.util.Locale;
 
-public class Vector2f {
+public class Vector2f implements Cloneable {
   private float x, y;
 
   public Vector2f() {
     this(0, 0);
-  }
-
-  public Vector2f(Vector2f v) {
-    this(v.getX(), v.getY());
   }
 
   public Vector2f(float x, float y) {
@@ -34,12 +30,13 @@ public class Vector2f {
     this.y = y;
   }
 
-  public void addX(float v) {
-    this.x += v;
+  public void add(float tx, float ty) {
+    this.x += tx;
+    this.y += ty;
   }
 
-  public void addY(float v) {
-    this.y += v;
+  public void add(Vector2f v) {
+    add(v.getX(), v.getY());
   }
 
   public void mult(float v) {
@@ -48,7 +45,17 @@ public class Vector2f {
   }
 
   @Override
+  public Vector2f clone() {
+    try {
+      return (Vector2f) super.clone();
+    }
+    catch (CloneNotSupportedException e) {
+      throw new Error(e);
+    }
+  }
+
+  @Override
   public String toString() {
-    return String.format(Locale.ENGLISH, "%s[%f, %f]", getClass().getSimpleName(), getX(), getY());
+    return String.format(Locale.ENGLISH, "Vector2f[%f, %f]", getX(), getY());
   }
 }

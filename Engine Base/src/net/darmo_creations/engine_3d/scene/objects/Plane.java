@@ -1,7 +1,5 @@
 package net.darmo_creations.engine_3d.scene.objects;
 
-import org.newdawn.slick.Color;
-
 import net.darmo_creations.engine_3d.math.Dimension2f;
 import net.darmo_creations.engine_3d.math.Point3f;
 import net.darmo_creations.engine_3d.math.Vector3f;
@@ -15,6 +13,14 @@ public class Plane extends Prop {
     this.size = size;
   }
 
+  public Dimension2f getSize() {
+    return this.size;
+  }
+
+  public void setSize(Dimension2f size) {
+    this.size = size;
+  }
+
   @Override
   public void update() {}
 
@@ -22,11 +28,10 @@ public class Plane extends Prop {
   protected void doRender() {
     Vector3f w = Vector3f.fromVector2f(this.size.getWidthVector());
     Vector3f h = Vector3f.fromVector2f(this.size.getHeightVector());
-    Point3f o = getOrigin();
-    Point3f p2 = o.add(w);
-    Point3f p3 = o.add(w).add(h);
-    Point3f p4 = o.add(h);
+    Point3f p2 = this.origin.addNew(w);
+    Point3f p3 = this.origin.addNew(w).addNew(h);
+    Point3f p4 = this.origin.addNew(h);
 
-    RenderUtils.drawQuad(o, p2, p3, p4, Color.blue);
+    RenderUtils.drawQuad(this.origin, p2, p3, p4, this.color);
   }
 }
