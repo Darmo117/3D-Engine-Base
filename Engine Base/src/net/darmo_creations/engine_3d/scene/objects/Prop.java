@@ -7,12 +7,14 @@ import org.newdawn.slick.Color;
 import net.darmo_creations.engine_3d.EngineComponent;
 import net.darmo_creations.engine_3d.math.Point3f;
 import net.darmo_creations.engine_3d.math.Vector3f;
+import net.darmo_creations.engine_3d.scene.Animation;
 
 public abstract class Prop implements EngineComponent {
   protected Color fillColor;
   protected Color borderColor;
   protected Vector3f rotation;
   protected Point3f origin;
+  protected Animation animation;
 
   public Prop(Point3f origin, Vector3f rotation) {
     this.origin = origin.clone();
@@ -37,6 +39,14 @@ public abstract class Prop implements EngineComponent {
     this.rotation = rotation.clone();
   }
 
+  public Animation getAnimation() {
+    return this.animation;
+  }
+
+  public void setAnimation(Animation animation) {
+    this.animation = animation;
+  }
+
   /**
    * @return a copy of this prop's fill color
    */
@@ -54,6 +64,12 @@ public abstract class Prop implements EngineComponent {
 
   public void setBorderColor(Color borderColor) {
     this.borderColor = new Color(borderColor);
+  }
+
+  @Override
+  public void update() {
+    if (this.animation != null)
+      this.animation.update();
   }
 
   @Override

@@ -53,9 +53,6 @@ public class Parallelepiped extends Prop {
   }
 
   @Override
-  public void update() {}
-
-  @Override
   protected void doRender() {
     Vector3f length = this.size.getLengthVector();
     Vector3f width = this.size.getWidthVector().rotate(MathUtils.PI_HALF - this.angleY, Axis.Y);

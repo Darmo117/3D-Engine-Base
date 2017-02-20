@@ -24,9 +24,6 @@ public class Sphere extends Prop {
   }
 
   @Override
-  public void update() {}
-
-  @Override
   protected void doRender() {
     GL11.glColor4f(this.fillColor.r, this.fillColor.g, this.fillColor.b, this.fillColor.a);
     GL11.glTranslatef(this.origin.getX(), this.origin.getY(), this.origin.getZ());

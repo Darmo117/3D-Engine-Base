@@ -22,9 +22,6 @@ public class Plane extends Prop {
   }
 
   @Override
-  public void update() {}
-
-  @Override
   protected void doRender() {
     Vector3f w = Vector3f.fromVector2f(this.size.getWidthVector());
     Vector3f h = Vector3f.fromVector2f(this.size.getHeightVector());
