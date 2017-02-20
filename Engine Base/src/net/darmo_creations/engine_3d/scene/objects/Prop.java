@@ -58,6 +58,9 @@ public abstract class Prop implements EngineComponent {
     this.fillColor = new Color(fillColor);
   }
 
+  /**
+   * @return a copy of this prop's border color
+   */
   public Color getBorderColor() {
     return new Color(this.borderColor);
   }
