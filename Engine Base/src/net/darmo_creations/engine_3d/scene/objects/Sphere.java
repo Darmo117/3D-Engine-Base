@@ -28,7 +28,7 @@ public class Sphere extends Prop {
 
   @Override
   protected void doRender() {
-    GL11.glColor4f(this.color.r, this.color.g, this.color.b, this.color.a);
+    GL11.glColor4f(this.fillColor.r, this.fillColor.g, this.fillColor.b, this.fillColor.a);
     GL11.glTranslatef(this.origin.getX(), this.origin.getY(), this.origin.getZ());
     this.model.draw(this.radius, 100, 100);
   }

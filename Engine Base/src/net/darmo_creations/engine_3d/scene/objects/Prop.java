@@ -9,14 +9,16 @@ import net.darmo_creations.engine_3d.math.Point3f;
 import net.darmo_creations.engine_3d.math.Vector3f;
 
 public abstract class Prop implements EngineComponent {
-  protected Color color;
+  protected Color fillColor;
+  protected Color borderColor;
   protected Vector3f rotation;
   protected Point3f origin;
 
   public Prop(Point3f origin, Vector3f rotation) {
     this.origin = origin.clone();
     this.rotation = rotation.clone();
-    this.color = Color.white;
+    this.fillColor = Color.white;
+    this.borderColor = Color.darkGray;
   }
 
   public Point3f getOrigin() {
@@ -36,14 +38,22 @@ public abstract class Prop implements EngineComponent {
   }
 
   /**
-   * @return a copy of this prop's color
+   * @return a copy of this prop's fill color
    */
-  public Color getColor() {
-    return new Color(this.color);
+  public Color getFillColor() {
+    return new Color(this.fillColor);
   }
 
-  public void setColor(Color color) {
-    this.color = new Color(color);
+  public void setFillColor(Color fillColor) {
+    this.fillColor = new Color(fillColor);
+  }
+
+  public Color getBorderColor() {
+    return new Color(this.borderColor);
+  }
+
+  public void setBorderColor(Color borderColor) {
+    this.borderColor = new Color(borderColor);
   }
 
   @Override

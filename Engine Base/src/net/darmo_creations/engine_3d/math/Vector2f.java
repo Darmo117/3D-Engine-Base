@@ -18,30 +18,36 @@ public class Vector2f implements Cloneable {
     return this.x;
   }
 
-  public void setX(float x) {
+  public Vector2f setX(float x) {
     this.x = x;
+    return this;
   }
 
   public float getY() {
     return this.y;
   }
 
-  public void setY(float y) {
+  public Vector2f setY(float y) {
     this.y = y;
+    return this;
   }
 
-  public void add(float tx, float ty) {
+  public Vector2f add(float tx, float ty) {
     this.x += tx;
     this.y += ty;
+
+    return this;
   }
 
-  public void add(Vector2f v) {
-    add(v.getX(), v.getY());
+  public Vector2f add(Vector2f v) {
+    return add(v.getX(), v.getY());
   }
 
-  public void mult(float v) {
+  public Vector2f mult(float v) {
     this.x *= v;
     this.y *= v;
+
+    return this;
   }
 
   @Override

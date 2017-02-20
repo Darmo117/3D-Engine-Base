@@ -14,19 +14,19 @@ import net.darmo_creations.engine_3d.math.Point3f;
  */
 public class RenderUtils {
   /**
-   * Draws a bordered polygon.
+   * Draws a bordered quad.
    */
-  public static void drawBorderedQuad(Point3f p1, Point3f p2, Point3f p3, Point3f p4, Color faceColor, Color lineColor) {
-    drawQuad(p1, p2, p3, p4, faceColor);
+  public static void drawBorderedQuad(Point3f p1, Point3f p2, Point3f p3, Point3f p4, Color fillColor, Color borderColor) {
+    drawQuad(p1, p2, p3, p4, fillColor);
 
-    drawLine(p1, p2, lineColor);
-    drawLine(p2, p3, lineColor);
-    drawLine(p3, p4, lineColor);
-    drawLine(p4, p1, lineColor);
+    drawLine(p1, p2, borderColor);
+    drawLine(p2, p3, borderColor);
+    drawLine(p3, p4, borderColor);
+    drawLine(p4, p1, borderColor);
   }
 
   /**
-   * Draws a polygon.
+   * Draws a quad.
    */
   public static void drawQuad(Point3f p1, Point3f p2, Point3f p3, Point3f p4, Color color) {
     GL11.glColor4f(color.r, color.g, color.b, color.a);

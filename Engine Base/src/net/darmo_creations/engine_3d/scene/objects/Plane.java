@@ -28,10 +28,11 @@ public class Plane extends Prop {
   protected void doRender() {
     Vector3f w = Vector3f.fromVector2f(this.size.getWidthVector());
     Vector3f h = Vector3f.fromVector2f(this.size.getHeightVector());
-    Point3f p2 = this.origin.addNew(w);
-    Point3f p3 = this.origin.addNew(w).addNew(h);
-    Point3f p4 = this.origin.addNew(h);
+    Point3f p2 = this.origin.clone().add(w);
+    Point3f p3 = this.origin.clone().add(w).add(h);
+    Point3f p4 = this.origin.clone().add(h);
 
-    RenderUtils.drawQuad(this.origin, p2, p3, p4, this.color);
+    RenderUtils.drawBorderedQuad(this.origin, p2, p3, p4, this.fillColor, this.borderColor);
+    RenderUtils.drawBorderedQuad(this.origin, p4, p3, p2, this.fillColor, this.borderColor);
   }
 }
