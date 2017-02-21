@@ -7,6 +7,6 @@ import net.darmo_creations.engine_3d.utils.MathUtils;
 
 public class Cuboid extends Parallelepiped {
   public Cuboid(Point3f origin, Dimension3f size, Vector3f rotation) {
-    super(origin, size, MathUtils.PI_HALF, MathUtils.PI_HALF, MathUtils.PI_HALF, rotation);
+    super(origin, size, MathUtils.HALF_PI, MathUtils.HALF_PI, MathUtils.HALF_PI, rotation);
   }
 }

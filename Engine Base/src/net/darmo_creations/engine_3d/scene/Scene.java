@@ -31,8 +31,8 @@ public class Scene implements EngineComponent {
     this.props.add(new Parallelepiped(
         new Point3f(0, -50, -100),
         new Dimension3f(20, 20, 20),
-        MathUtils.PI_HALF,
-        MathUtils.PI_HALF,
+        MathUtils.HALF_PI,
+        MathUtils.HALF_PI,
         MathUtils.PI / 4,
         new Vector3f()));
     // #f:1

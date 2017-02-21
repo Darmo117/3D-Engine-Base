@@ -55,8 +55,8 @@ public class Parallelepiped extends Prop {
   @Override
   protected void doRender() {
     Vector3f length = this.size.getLengthVector();
-    Vector3f width = this.size.getWidthVector().rotate(MathUtils.PI_HALF - this.angleY, Axis.Y);
-    Vector3f height = this.size.getHeightVector().rotate(-MathUtils.PI_HALF + this.angleX, Axis.X).rotate(-MathUtils.PI_HALF + this.angleZ, Axis.Z);
+    Vector3f width = this.size.getWidthVector().rotate(MathUtils.HALF_PI - this.angleY, Axis.Y);
+    Vector3f height = this.size.getHeightVector().rotate(-MathUtils.HALF_PI + this.angleX, Axis.X).rotate(-MathUtils.HALF_PI + this.angleZ, Axis.Z);
     Point3f a = this.origin;
     Point3f b = a.clone().add(length);
     Point3f c = a.clone().add(length).add(width);

@@ -3,7 +3,7 @@ package net.darmo_creations.engine_3d.utils;
 public class MathUtils {
   public static final float PI = (float) Math.PI;
   public static final float TWO_PI = 2 * PI;
-  public static final float PI_HALF = PI / 2;
+  public static final float HALF_PI = PI / 2;
 
   /**
    * @return the unsigned value of the argument byte
