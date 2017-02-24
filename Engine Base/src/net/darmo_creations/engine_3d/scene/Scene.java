@@ -25,7 +25,7 @@ public class Scene implements EngineComponent {
     // TEMP
     this.props.add(new Plane(new Point3f(0, 0, -100), new Dimension2f(100, 100), new Vector3f()));
     this.props.get(0).setFillColor(Color.green);
-    this.props.add(new Sphere(new Point3f(-50, 0, -100), 10, new Vector3f()));
+    this.props.add(new Sphere(new Point3f(-50, 0, -100), new Vector3f(), 10));
     this.props.get(1).setFillColor(Color.cyan);
     // #f:0
     this.props.add(new Parallelepiped(
@@ -39,7 +39,6 @@ public class Scene implements EngineComponent {
     this.props.get(2).setFillColor(Color.red);
     this.props.add(new Cuboid(new Point3f(-30, -20, -100), new Dimension3f(20, 20, 20), new Vector3f()));
     this.props.get(3).setFillColor(Color.orange);
-    // this.props.add(new Supershape(new Point3f(), new Vector3f()));
   }
 
   public boolean addProp(Prop prop) {

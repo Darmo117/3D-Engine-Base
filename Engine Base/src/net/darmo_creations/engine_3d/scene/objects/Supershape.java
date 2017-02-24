@@ -16,20 +16,24 @@ public class Supershape extends Prop {
   protected float n11, n12, n13, n21, n22, n23;
   private Vector3f[][] points;
 
-  public Supershape(Point3f origin, Vector3f rotation) {
+  public Supershape(Point3f origin, Vector3f rotation, float radius) {
+    this(origin, rotation, radius, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1);
+  }
+
+  public Supershape(Point3f origin, Vector3f rotation, float radius, float a, float b, float m1, float m2, float n11, float n12, float n13, float n21, float n22, float n23) {
     super(origin, rotation);
-    this.radius = 10;
     this.totalPoints = 75;
-    this.a = 1;
-    this.b = 1;
-    this.m1 = 0;
-    this.m2 = 0;
-    this.n11 = 1;
-    this.n12 = 1;
-    this.n13 = 1;
-    this.n21 = 1;
-    this.n22 = 1;
-    this.n23 = 1;
+    this.radius = radius;
+    this.a = a;
+    this.b = b;
+    this.m1 = m1;
+    this.m2 = m2;
+    this.n11 = n11;
+    this.n12 = n12;
+    this.n13 = n13;
+    this.n21 = n21;
+    this.n22 = n22;
+    this.n23 = n23;
     this.points = new Vector3f[this.totalPoints + 1][this.totalPoints + 1];
   }
 
