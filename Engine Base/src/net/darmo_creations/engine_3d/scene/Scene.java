@@ -10,6 +10,7 @@ import net.darmo_creations.engine_3d.math.Point3f;
 import net.darmo_creations.engine_3d.scene.objects.Prop;
 
 public class Scene implements EngineComponent {
+  private boolean renderLights;
   private Map<String, Prop> props;
   private Light[] lights;
 
@@ -18,6 +19,7 @@ public class Scene implements EngineComponent {
     this.lights = new Light[LightId.availableLightsNb()];
     for (int i = 0; i < this.lights.length; i++)
       this.lights[i] = new Light(LightId.fromIndex(i), new Point3f());
+    this.renderLights = false;
   }
 
   public void addProp(String name, Prop prop) {
@@ -30,6 +32,14 @@ public class Scene implements EngineComponent {
 
   public Prop getProp(String name) {
     return this.props.get(name);
+  }
+
+  public boolean isRenderingLights() {
+    return this.renderLights;
+  }
+
+  public void setRenderLights(boolean renderLights) {
+    this.renderLights = renderLights;
   }
 
   public void setLightEnable(LightId id, boolean enabled) {
@@ -57,7 +67,9 @@ public class Scene implements EngineComponent {
   @Override
   public void render() {
     this.props.forEach((name, prop) -> prop.render());
-    for (Light light : this.lights)
-      light.render();
+    if (this.renderLights) {
+      for (Light light : this.lights)
+        light.render();
+    }
   }
 }

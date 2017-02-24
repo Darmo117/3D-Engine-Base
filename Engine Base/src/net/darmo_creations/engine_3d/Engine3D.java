@@ -111,6 +111,7 @@ public class Engine3D implements EngineComponent {
     // TEMP
     this.scene.setLightEnable(LightId.LIGHT_0, true);
     this.scene.setLightColor(LightId.LIGHT_0, Color.white, new Color(0.1f, 0.1f, 0.1f), Color.white);
+    this.scene.setRenderLights(true);
 
     this.scene.addProp("plane", new Plane(new Point3f(0, 0, -100), new Dimension2f(100, 100), new Vector3f()));
     this.scene.getProp("plane").setFillColor(Color.white);

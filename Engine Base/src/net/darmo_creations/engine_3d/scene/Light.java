@@ -5,7 +5,6 @@ import static org.lwjgl.opengl.GL11.*;
 import org.lwjgl.util.glu.Sphere;
 import org.newdawn.slick.Color;
 
-import net.darmo_creations.engine_3d.EngineComponent;
 import net.darmo_creations.engine_3d.math.Point3f;
 import net.darmo_creations.engine_3d.utils.Buffers;
 import net.darmo_creations.engine_3d.utils.RenderUtils;
@@ -15,21 +14,14 @@ import net.darmo_creations.engine_3d.utils.RenderUtils;
  * 
  * @author Damien Vergnet
  */
-public class Light implements EngineComponent {
+public class Light extends LocatedObject {
   private final LightId id;
   private Point3f position;
 
   public Light(LightId id, Point3f position) {
+    super(position);
     this.id = id;
     this.position = position;
-  }
-
-  public Point3f getPosition() {
-    return this.position.clone();
-  }
-
-  public void setPosition(Point3f position) {
-    this.position = position.clone();
   }
 
   public LightId getId() {

@@ -19,7 +19,8 @@ public class Supershape extends Prop {
     this(origin, rotation, radius, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1);
   }
 
-  public Supershape(Point3f origin, Vector3f rotation, float radius, float a, float b, float m1, float m2, float n11, float n12, float n13, float n21, float n22, float n23) {
+  public Supershape(Point3f origin, Vector3f rotation, float radius, float a, float b, float m1, float m2, float n11, float n12, float n13, float n21,
+      float n22, float n23) {
     super(origin, rotation);
     this.totalPoints = 75;
     this.radius = radius;
