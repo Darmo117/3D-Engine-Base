@@ -2,9 +2,11 @@ package net.darmo_creations.engine_3d.math;
 
 import java.util.Locale;
 
-import net.darmo_creations.engine_3d.utils.MathUtils;
-
 public class Vector3f implements Cloneable {
+  public static Vector3f fromPoints(Point3f a, Point3f b) {
+    return new Vector3f(b.getX() - a.getX(), b.getY() - a.getY(), b.getZ() - a.getZ());
+  }
+
   public static Vector3f fromVector2f(Vector2f v) {
     return new Vector3f(v.getX(), v.getY(), 0);
   }
@@ -46,6 +48,10 @@ public class Vector3f implements Cloneable {
   public Vector3f setZ(float z) {
     this.z = z;
     return this;
+  }
+
+  public float norm() {
+    return MathUtils.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
   }
 
   public Vector3f add(float tx, float ty, float tz) {
@@ -91,6 +97,18 @@ public class Vector3f implements Cloneable {
     return this;
   }
 
+  public Vector3f normalize() {
+    float l = norm();
+
+    if (l != 0) {
+      this.x /= l;
+      this.y /= l;
+      this.z /= l;
+    }
+
+    return this;
+  }
+
   @Override
   public Vector3f clone() {
     try {
@@ -104,5 +122,15 @@ public class Vector3f implements Cloneable {
   @Override
   public String toString() {
     return String.format(Locale.ENGLISH, "Vector3f[%f, %f, %f]", getX(), getY(), getZ());
+  }
+
+  public static Vector3f crossProduct(Vector3f u, Vector3f v) {
+    Vector3f w = new Vector3f();
+
+    w.setX(u.getY() * v.getZ() - u.getZ() * v.getY());
+    w.setY(u.getZ() * v.getX() - u.getX() * v.getZ());
+    w.setZ(u.getX() * v.getY() - u.getY() * v.getX());
+
+    return w;
   }
 }

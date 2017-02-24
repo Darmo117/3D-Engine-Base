@@ -4,9 +4,9 @@ import static net.darmo_creations.engine_3d.utils.RenderUtils.*;
 
 import net.darmo_creations.engine_3d.math.Axis;
 import net.darmo_creations.engine_3d.math.Dimension3f;
+import net.darmo_creations.engine_3d.math.MathUtils;
 import net.darmo_creations.engine_3d.math.Point3f;
 import net.darmo_creations.engine_3d.math.Vector3f;
-import net.darmo_creations.engine_3d.utils.MathUtils;
 
 public class Parallelepiped extends Prop {
   private Dimension3f size;

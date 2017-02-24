@@ -1,4 +1,4 @@
-package net.darmo_creations.engine_3d.utils;
+package net.darmo_creations.engine_3d.math;
 
 public class MathUtils {
   public static final float PI = (float) Math.PI;
@@ -16,6 +16,10 @@ public class MathUtils {
     return newMin + (newMax - newMin) * ((v - min) / (max - min));
   }
 
+  public static float sqrt(float x) {
+    return (float) Math.sqrt(x);
+  }
+
   public static float pow(float a, float b) {
     return (float) Math.pow(a, b);
   }
@@ -30,6 +34,18 @@ public class MathUtils {
 
   public static float tan(float x) {
     return (float) Math.tan(x);
+  }
+
+  /**
+   * Returns the normal vector to the given plane.
+   * 
+   * @return the normal to the plane
+   */
+  public static Vector3f normal(Point3f p1, Point3f p2, Point3f p3) {
+    Vector3f u = Vector3f.fromPoints(p1, p2);
+    Vector3f v = Vector3f.fromPoints(p1, p3);
+
+    return Vector3f.crossProduct(u, v).normalize();
   }
 
   private MathUtils() {}

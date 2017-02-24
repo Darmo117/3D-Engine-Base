@@ -3,9 +3,7 @@ package net.darmo_creations.engine_3d;
 import static org.lwjgl.opengl.GL11.*;
 
 import java.awt.Dimension;
-import java.nio.FloatBuffer;
 
-import org.lwjgl.BufferUtils;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -13,6 +11,7 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.PixelFormat;
 
+import net.darmo_creations.engine_3d.scene.LightId;
 import net.darmo_creations.engine_3d.scene.Scene;
 import net.darmo_creations.engine_3d.utils.MouseUtils;
 
@@ -38,13 +37,6 @@ public class Engine3D implements EngineComponent {
   private Camera cam;
   private Scene scene;
   private Dimension viewportSize;
-
-  // ----------- Variables added for Lighting Test -----------//
-  private FloatBuffer matSpecular;
-  private FloatBuffer lightPosition;
-  private FloatBuffer whiteLight;
-  private FloatBuffer lModelAmbient;
-  // ----------- END: Variables added for Lighting Test -----------//
 
   /**
    * Crée une nouvelle instance du moteur.
@@ -82,52 +74,21 @@ public class Engine3D implements EngineComponent {
 
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
-    // Variables and method calls added for lighting.
-    initLightArrays();
-    glShadeModel(GL_SMOOTH);
-    // Sets specular material color
-    glMaterial(GL_FRONT, GL_SPECULAR, this.matSpecular);
-    // Sets shininess
-    glMaterialf(GL_FRONT, GL_SHININESS, 50);
-
-    // Sets light position
-    glLight(GL_LIGHT0, GL_POSITION, this.lightPosition);
-    // Sets specular light to white
-    glLight(GL_LIGHT0, GL_SPECULAR, this.whiteLight);
-    // Sets diffuse light to white
-    glLight(GL_LIGHT0, GL_DIFFUSE, this.whiteLight);
-    // Global ambient light
-    glLightModel(GL_LIGHT_MODEL_AMBIENT, this.lModelAmbient);
-
     // Enables lighting
     glEnable(GL_LIGHTING);
-    // Enables light0
-    glEnable(GL_LIGHT0);
-
-    // Enables opengl to use glColor3f to define material color
+    // Enables light0 (default at (0, 0, 0))
+    glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
+    // Enables the use of glColorXf to define material color
     glEnable(GL_COLOR_MATERIAL);
-    // Tell opengl glColor3f effects the ambient and diffuse properties of material
-    glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+    // Tell OpenGL glColorXf effects the ambient and diffuse properties of material
+    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
 
     glEnable(GL_CULL_FACE);
     glCullFace(GL_FRONT);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     loop();
-  }
-
-  private void initLightArrays() {
-    this.matSpecular = BufferUtils.createFloatBuffer(4);
-    this.matSpecular.put(1.0f).put(1.0f).put(1.0f).put(1.0f).flip();
-
-    this.lightPosition = BufferUtils.createFloatBuffer(4);
-    this.lightPosition.put(1.0f).put(1.0f).put(1.0f).put(0.0f).flip();
-
-    this.whiteLight = BufferUtils.createFloatBuffer(4);
-    this.whiteLight.put(1.0f).put(1.0f).put(1.0f).put(1.0f).flip();
-
-    this.lModelAmbient = BufferUtils.createFloatBuffer(4);
-    this.lModelAmbient.put(0.5f).put(0.5f).put(0.5f).put(1.0f).flip();
   }
 
   /**
@@ -136,6 +97,9 @@ public class Engine3D implements EngineComponent {
   private void loop() {
     final double NANO = 1e9 / TPS;
     long before = System.nanoTime();
+
+    // TEMP
+    this.scene.setLightEnable(LightId.LIGHT_0, true);
 
     while (!Display.isCloseRequested()) {
       long now = System.nanoTime();
@@ -169,7 +133,7 @@ public class Engine3D implements EngineComponent {
   public void update() {
     if (MouseUtils.isLeftButtonDown())
       Mouse.setGrabbed(true);
-    if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE))
+    if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE) || Keyboard.isKeyDown(Keyboard.KEY_TAB))
       Mouse.setGrabbed(false);
 
     if (!isEnginePaused()) {

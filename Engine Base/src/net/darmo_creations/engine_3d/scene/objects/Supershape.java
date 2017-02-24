@@ -1,11 +1,10 @@
 package net.darmo_creations.engine_3d.scene.objects;
 
 import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.Color;
 
+import net.darmo_creations.engine_3d.math.MathUtils;
 import net.darmo_creations.engine_3d.math.Point3f;
 import net.darmo_creations.engine_3d.math.Vector3f;
-import net.darmo_creations.engine_3d.utils.MathUtils;
 import net.darmo_creations.engine_3d.utils.RenderUtils;
 
 public class Supershape extends Prop {
@@ -17,7 +16,7 @@ public class Supershape extends Prop {
   private Vector3f[][] points;
 
   public Supershape(Point3f origin, Vector3f rotation, float radius) {
-    this(origin, rotation, radius, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1);
+    this(origin, rotation, radius, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1);
   }
 
   public Supershape(Point3f origin, Vector3f rotation, float radius, float a, float b, float m1, float m2, float n11, float n12, float n13, float n21, float n22, float n23) {
@@ -142,8 +141,8 @@ public class Supershape extends Prop {
       }
     }
 
-    Color color = getFillColor();
-    GL11.glColor4f(color.r, color.g, color.b, color.a);
+    // TODO calculer les normales pour l'éclairage.
+    RenderUtils.color4(this.fillColor);
     for (int i = 0; i < this.totalPoints; i++) {
       GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
       for (int j = 0; j < this.totalPoints + 1; j++) {

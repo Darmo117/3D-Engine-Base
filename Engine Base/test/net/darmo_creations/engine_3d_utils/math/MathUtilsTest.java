@@ -1,6 +1,6 @@
-package net.darmo_creations.engine_3d.utils;
+package net.darmo_creations.engine_3d_utils.math;
 
-import static net.darmo_creations.engine_3d.utils.MathUtils.*;
+import static net.darmo_creations.engine_3d.math.MathUtils.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;

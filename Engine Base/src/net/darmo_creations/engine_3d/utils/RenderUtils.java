@@ -5,7 +5,9 @@ import static org.lwjgl.opengl.GL11.*;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 
+import net.darmo_creations.engine_3d.math.MathUtils;
 import net.darmo_creations.engine_3d.math.Point3f;
+import net.darmo_creations.engine_3d.math.Vector3f;
 
 /**
  * This class provides methods to render objects.
@@ -13,6 +15,14 @@ import net.darmo_creations.engine_3d.math.Point3f;
  * @author Damien Vergnet
  */
 public class RenderUtils {
+  public static void color4(Color color) {
+    GL11.glColor4f(color.r, color.g, color.b, color.a);
+  }
+
+  public static void color3(Color color) {
+    GL11.glColor3f(color.r, color.g, color.b);
+  }
+
   /**
    * Draws a bordered quad.
    */
@@ -29,9 +39,11 @@ public class RenderUtils {
    * Draws a quad.
    */
   public static void drawQuad(Point3f p1, Point3f p2, Point3f p3, Point3f p4, Color color) {
-    GL11.glColor4f(color.r, color.g, color.b, color.a);
+    color4(color);
     glBegin(GL_QUADS);
 
+    Vector3f n = MathUtils.normal(p1, p2, p3);
+    GL11.glNormal3f(n.getX(), n.getY(), n.getZ());
     vertex(p1);
     vertex(p2);
     vertex(p3);
@@ -44,7 +56,7 @@ public class RenderUtils {
    * Draws a line from p1 to p2.
    */
   public static void drawLine(Point3f p1, Point3f p2, Color color) {
-    GL11.glColor4f(color.r, color.g, color.b, color.a);
+    color4(color);
     glBegin(GL_LINE_STRIP);
 
     vertex(p1);
