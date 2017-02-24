@@ -12,6 +12,14 @@ public class MathUtils {
     return b & 0xff;
   }
 
+  public static float map(float v, float min, float max, float newMin, float newMax) {
+    return newMin + (newMax - newMin) * ((v - min) / (max - min));
+  }
+
+  public static float pow(float a, float b) {
+    return (float) Math.pow(a, b);
+  }
+
   public static float cos(float x) {
     return (float) Math.cos(x);
   }

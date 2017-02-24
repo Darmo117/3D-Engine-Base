@@ -57,7 +57,7 @@ public class Parallelepiped extends Prop {
     Vector3f length = this.size.getLengthVector();
     Vector3f width = this.size.getWidthVector().rotate(MathUtils.HALF_PI - this.angleY, Axis.Y);
     Vector3f height = this.size.getHeightVector().rotate(-MathUtils.HALF_PI + this.angleX, Axis.X).rotate(-MathUtils.HALF_PI + this.angleZ, Axis.Z);
-    Point3f a = this.origin;
+    Point3f a = new Point3f();
     Point3f b = a.clone().add(length);
     Point3f c = a.clone().add(length).add(width);
     Point3f d = a.clone().add(width);

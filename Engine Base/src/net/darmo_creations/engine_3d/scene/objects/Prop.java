@@ -81,6 +81,7 @@ public abstract class Prop implements EngineComponent {
     glRotatef(this.rotation.getX(), 1, 0, 0);
     glRotatef(this.rotation.getY(), 0, 1, 0);
     glRotatef(this.rotation.getZ(), 0, 0, 1);
+    glTranslatef(this.origin.getX(), this.origin.getY(), this.origin.getZ());
     doRender();
     glPopMatrix();
   }

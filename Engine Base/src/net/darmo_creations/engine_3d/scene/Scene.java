@@ -39,6 +39,7 @@ public class Scene implements EngineComponent {
     this.props.get(2).setFillColor(Color.red);
     this.props.add(new Cuboid(new Point3f(-30, -20, -100), new Dimension3f(20, 20, 20), new Vector3f()));
     this.props.get(3).setFillColor(Color.orange);
+    // this.props.add(new Supershape(new Point3f(), new Vector3f()));
   }
 
   public boolean addProp(Prop prop) {

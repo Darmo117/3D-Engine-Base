@@ -67,13 +67,10 @@ public class Camera implements EngineComponent {
   }
 
   /**
-   * Enable camera's projection.
+   * Sets camera's projection.
    */
-  public void enableProjection() {
-    glEnable(GL_PROJECTION);
-    glLoadIdentity();
+  public void setProjection() {
     GLU.gluPerspective(this.fov, (float) Display.getWidth() / Display.getHeight(), this.zNear, this.zFar);
-    glEnable(GL_MODELVIEW);
   }
 
   /**

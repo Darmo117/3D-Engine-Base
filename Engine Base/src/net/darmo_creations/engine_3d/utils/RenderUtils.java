@@ -58,8 +58,19 @@ public class RenderUtils {
    * 
    * @param p the vertex coordinates
    */
-  private static void vertex(Point3f p) {
-    glVertex3f(p.getX(), p.getY(), p.getZ());
+  public static void vertex(Point3f p) {
+    vertex(p.getX(), p.getY(), p.getZ());
+  }
+
+  /**
+   * Declares a vertex.
+   * 
+   * @param x the vertex coordinates
+   * @param y the vertex coordinates
+   * @param z the vertex coordinates
+   */
+  public static void vertex(float x, float y, float z) {
+    glVertex3f(x, y, z);
   }
 
   private RenderUtils() {}
