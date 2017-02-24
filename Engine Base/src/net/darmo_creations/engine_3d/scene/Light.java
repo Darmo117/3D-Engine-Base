@@ -2,6 +2,7 @@ package net.darmo_creations.engine_3d.scene;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import org.lwjgl.util.glu.Sphere;
 import org.newdawn.slick.Color;
 
 import net.darmo_creations.engine_3d.EngineComponent;
@@ -45,14 +46,18 @@ public class Light implements EngineComponent {
       glDisable(this.id.getValue());
   }
 
+  public void setColor(Color diffuseColor, Color ambiantColor, Color specularColor) {
+    glLight(this.id.getValue(), GL_DIFFUSE, Buffers.floatBuffer(diffuseColor.r, diffuseColor.g, diffuseColor.g, 1));
+    glLight(this.id.getValue(), GL_AMBIENT, Buffers.floatBuffer(ambiantColor.r, ambiantColor.g, ambiantColor.g, 1));
+    glLight(this.id.getValue(), GL_SPECULAR, Buffers.floatBuffer(specularColor.r, specularColor.g, specularColor.g, 1));
+  }
+
   @Override
   public void render() {
     glPushMatrix();
     glTranslatef(this.position.getX(), this.position.getY(), this.position.getZ());
-    glBegin(GL_POINTS);
-    RenderUtils.color3(Color.red);
-    RenderUtils.vertex(this.position);
-    glEnd();
+    RenderUtils.color3(Color.white);
+    new Sphere().draw(2, 50, 50);
     glPopMatrix();
   }
 

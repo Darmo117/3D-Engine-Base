@@ -8,6 +8,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.glu.GLU;
 
+import net.darmo_creations.engine_3d.math.Point3f;
 import net.darmo_creations.engine_3d.math.Vector2f;
 import net.darmo_creations.engine_3d.math.Vector3f;
 
@@ -26,7 +27,7 @@ public class Camera implements EngineComponent {
   /** Maximum render distance */
   private float zFar;
   /** Camera's position */
-  private Vector3f position;
+  private Point3f position;
   /** Camera's rotation */
   private Vector2f rotation;
   private Vector3f speed;
@@ -37,7 +38,7 @@ public class Camera implements EngineComponent {
    * Creates a new camera at (0, 0, 0);
    */
   public Camera() {
-    this(new Vector3f());
+    this(new Point3f());
   }
 
   /**
@@ -45,8 +46,8 @@ public class Camera implements EngineComponent {
    * 
    * @param position the position
    */
-  public Camera(Vector3f position) {
-    this.position = position;
+  public Camera(Point3f position) {
+    this.position = position.clone();
     this.rotation = new Vector2f();
     this.speed = new Vector3f();
     this.dir = new Vector3f();
@@ -69,15 +70,15 @@ public class Camera implements EngineComponent {
   /**
    * Sets camera's projection.
    */
-  public void setProjection() {
+  public void setPerspective() {
     GLU.gluPerspective(this.fov, (float) Display.getWidth() / Display.getHeight(), this.zNear, this.zFar);
   }
 
   /**
    * @return this camera's position
    */
-  public Vector3f getPosition() {
-    return this.position;
+  public Point3f getPosition() {
+    return this.position.clone();
   }
 
   /**
@@ -85,8 +86,8 @@ public class Camera implements EngineComponent {
    * 
    * @param position the new location
    */
-  public void setPosition(Vector3f position) {
-    this.position = position;
+  public void setPosition(Point3f position) {
+    this.position = position.clone();
   }
 
   @Override

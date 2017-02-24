@@ -10,9 +10,19 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.PixelFormat;
+import org.newdawn.slick.Color;
 
+import net.darmo_creations.engine_3d.math.Dimension2f;
+import net.darmo_creations.engine_3d.math.Dimension3f;
+import net.darmo_creations.engine_3d.math.MathUtils;
+import net.darmo_creations.engine_3d.math.Point3f;
+import net.darmo_creations.engine_3d.math.Vector3f;
 import net.darmo_creations.engine_3d.scene.LightId;
 import net.darmo_creations.engine_3d.scene.Scene;
+import net.darmo_creations.engine_3d.scene.objects.Cuboid;
+import net.darmo_creations.engine_3d.scene.objects.Parallelepiped;
+import net.darmo_creations.engine_3d.scene.objects.Plane;
+import net.darmo_creations.engine_3d.scene.objects.Sphere;
 import net.darmo_creations.engine_3d.utils.MouseUtils;
 
 /**
@@ -42,7 +52,7 @@ public class Engine3D implements EngineComponent {
    * Crée une nouvelle instance du moteur.
    */
   private Engine3D() {
-    this.cam = new Camera();
+    this.cam = new Camera(new Point3f(0, 10, 0));
     this.cam.setProjection(80, .01f, 10000);
     this.scene = new Scene();
     this.viewportSize = new Dimension(800, 600);
@@ -68,7 +78,7 @@ public class Engine3D implements EngineComponent {
     // Sets the matrix mode to project
     glMatrixMode(GL_PROJECTION);
 
-    this.cam.setProjection();
+    this.cam.setPerspective();
 
     glMatrixMode(GL_MODELVIEW);
 
@@ -100,6 +110,18 @@ public class Engine3D implements EngineComponent {
 
     // TEMP
     this.scene.setLightEnable(LightId.LIGHT_0, true);
+    this.scene.setLightColor(LightId.LIGHT_0, Color.white, new Color(0.1f, 0.1f, 0.1f), Color.white);
+
+    this.scene.addProp("plane", new Plane(new Point3f(0, 0, -100), new Dimension2f(100, 100), new Vector3f()));
+    this.scene.getProp("plane").setFillColor(Color.white);
+    this.scene.addProp("sphere", new Sphere(new Point3f(-50, 0, -100), new Vector3f(), 10));
+    this.scene.getProp("sphere").setFillColor(Color.cyan);
+    this.scene.addProp("box", new Parallelepiped(new Point3f(0, -50, -100), new Dimension3f(20, 20, 20), MathUtils.HALF_PI, MathUtils.HALF_PI,
+        MathUtils.PI / 4, new Vector3f()));
+    this.scene.getProp("box").setFillColor(Color.red);
+    this.scene.addProp("parallelogram", new Cuboid(new Point3f(-30, -20, -100), new Dimension3f(20, 20, 20), new Vector3f()));
+    this.scene.getProp("parallelogram").setFillColor(Color.orange);
+    // end TEMP
 
     while (!Display.isCloseRequested()) {
       long now = System.nanoTime();
