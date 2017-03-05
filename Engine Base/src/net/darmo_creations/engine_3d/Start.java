@@ -20,8 +20,7 @@ public class Start {
     getLogger().info(new Date());
     getLogger().info("Starting...");
     try {
-      Engine3D.getInstance()
-          .start();
+      Engine3D.getInstance().start();
     }
     catch (Throwable ex) {
       getLogger().severe("Error or exception caught: " + ex);

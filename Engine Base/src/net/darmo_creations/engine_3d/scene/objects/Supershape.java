@@ -35,6 +35,22 @@ public class Supershape extends Prop {
     this.n22 = n22;
     this.n23 = n23;
     this.points = new Vector3f[this.totalPoints + 1][this.totalPoints + 1];
+
+    for (int i = 0; i < this.totalPoints + 1; i++) {
+      float lat = MathUtils.map(i, 0, this.totalPoints, -MathUtils.HALF_PI, MathUtils.HALF_PI);
+      float r2 = compute(lat, this.m2, this.n21, this.n22, this.n23);
+
+      for (int j = 0; j < this.totalPoints + 1; j++) {
+        float lon = MathUtils.map(j, 0, this.totalPoints, -MathUtils.PI, MathUtils.PI);
+        float r1 = compute(lon, this.m1, this.n11, this.n12, this.n13);
+        float x = this.radius * r1 * MathUtils.cos(lon) * r2 * MathUtils.cos(lat);
+        float y = this.radius * r1 * MathUtils.sin(lon) * r2 * MathUtils.cos(lat);
+        float z = this.radius * r2 * MathUtils.sin(lat);
+
+        this.points[i][j] = new Vector3f(x, y, z);
+      }
+    }
+
   }
 
   public float getRadius() {
@@ -127,21 +143,6 @@ public class Supershape extends Prop {
 
   @Override
   protected void doRender() {
-    for (int i = 0; i < this.totalPoints + 1; i++) {
-      float lat = MathUtils.map(i, 0, this.totalPoints, -MathUtils.HALF_PI, MathUtils.HALF_PI);
-      float r2 = compute(lat, this.m2, this.n21, this.n22, this.n23);
-
-      for (int j = 0; j < this.totalPoints + 1; j++) {
-        float lon = MathUtils.map(j, 0, this.totalPoints, -MathUtils.PI, MathUtils.PI);
-        float r1 = compute(lon, this.m1, this.n11, this.n12, this.n13);
-        float x = this.radius * r1 * MathUtils.cos(lon) * r2 * MathUtils.cos(lat);
-        float y = this.radius * r1 * MathUtils.sin(lon) * r2 * MathUtils.cos(lat);
-        float z = this.radius * r2 * MathUtils.sin(lat);
-
-        this.points[i][j] = new Vector3f(x, y, z);
-      }
-    }
-
     // TODO calculer les normales pour l'éclairage.
     RenderUtils.color4(this.fillColor);
     for (int i = 0; i < this.totalPoints; i++) {

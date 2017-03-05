@@ -110,18 +110,14 @@ public class Engine3D implements EngineComponent {
     this.scene.setRenderLights(true);
 
     this.scene.addProp("plane", new Plane(new Point3f(-200, 0, 200), new Dimension2f(400, 400), new Vector3f(-90, 0, 0)));
-    this.scene.getProp("plane")
-        .setFillColor(Color.green);
+    this.scene.getProp("plane").setFillColor(Color.green);
     this.scene.addProp("sphere", new Sphere(new Point3f(-50, 0, -100), new Vector3f(), 10));
-    this.scene.getProp("sphere")
-        .setFillColor(Color.cyan);
+    this.scene.getProp("sphere").setFillColor(Color.cyan);
     this.scene.addProp("box", new Parallelepiped(new Point3f(0, 0, -100), new Dimension3f(20, 20, 20), MathUtils.HALF_PI, MathUtils.HALF_PI,
         MathUtils.PI / 4, new Vector3f()));
-    this.scene.getProp("box")
-        .setFillColor(Color.red);
+    this.scene.getProp("box").setFillColor(Color.red);
     this.scene.addProp("parallelogram", new Cuboid(new Point3f(-30, 0, -100), new Dimension3f(20, 20, 20), new Vector3f()));
-    this.scene.getProp("parallelogram")
-        .setFillColor(Color.orange);
+    this.scene.getProp("parallelogram").setFillColor(Color.orange);
     // end TEMP
 
     while (!Display.isCloseRequested()) {
