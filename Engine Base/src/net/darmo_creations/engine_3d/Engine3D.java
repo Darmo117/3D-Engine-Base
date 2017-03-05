@@ -31,8 +31,6 @@ import net.darmo_creations.engine_3d.utils.MouseUtils;
  * @author Damien Vergnet
  */
 public class Engine3D implements EngineComponent {
-  private static final int TPS = 60;
-
   private static Engine3D theEngine;
 
   /**
@@ -105,9 +103,6 @@ public class Engine3D implements EngineComponent {
    * Main loop.
    */
   private void loop() {
-    final double NANO = 1e9 / TPS;
-    long before = System.nanoTime();
-
     // TEMP
     this.scene.setLightEnable(LightId.LIGHT_0, true);
     this.scene.setLightPos(LightId.LIGHT_0, new Point3f(0, 20, 0));
@@ -115,24 +110,22 @@ public class Engine3D implements EngineComponent {
     this.scene.setRenderLights(true);
 
     this.scene.addProp("plane", new Plane(new Point3f(-200, 0, 200), new Dimension2f(400, 400), new Vector3f(-90, 0, 0)));
-    this.scene.getProp("plane").setFillColor(Color.green);
+    this.scene.getProp("plane")
+        .setFillColor(Color.green);
     this.scene.addProp("sphere", new Sphere(new Point3f(-50, 0, -100), new Vector3f(), 10));
-    this.scene.getProp("sphere").setFillColor(Color.cyan);
+    this.scene.getProp("sphere")
+        .setFillColor(Color.cyan);
     this.scene.addProp("box", new Parallelepiped(new Point3f(0, 0, -100), new Dimension3f(20, 20, 20), MathUtils.HALF_PI, MathUtils.HALF_PI,
         MathUtils.PI / 4, new Vector3f()));
-    this.scene.getProp("box").setFillColor(Color.red);
+    this.scene.getProp("box")
+        .setFillColor(Color.red);
     this.scene.addProp("parallelogram", new Cuboid(new Point3f(-30, 0, -100), new Dimension3f(20, 20, 20), new Vector3f()));
-    this.scene.getProp("parallelogram").setFillColor(Color.orange);
+    this.scene.getProp("parallelogram")
+        .setFillColor(Color.orange);
     // end TEMP
 
     while (!Display.isCloseRequested()) {
-      long now = System.nanoTime();
-      double elapsed = now - before;
-
-      if (elapsed > NANO) {
-        update();
-        before += NANO;
-      }
+      update();
       render();
 
       Display.update();
