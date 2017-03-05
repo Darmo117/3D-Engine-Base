@@ -16,12 +16,10 @@ import net.darmo_creations.engine_3d.utils.RenderUtils;
  */
 public class Light extends LocatedObject {
   private final LightId id;
-  private Point3f position;
 
   public Light(LightId id, Point3f position) {
     super(position);
     this.id = id;
-    this.position = position;
   }
 
   public LightId getId() {

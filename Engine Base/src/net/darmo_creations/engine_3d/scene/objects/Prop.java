@@ -60,10 +60,10 @@ public abstract class Prop extends LocatedObject {
   @Override
   public final void render() {
     glPushMatrix();
+    glTranslatef(this.position.getX(), this.position.getY(), this.position.getZ());
     glRotatef(this.rotation.getX(), 1, 0, 0);
     glRotatef(this.rotation.getY(), 0, 1, 0);
     glRotatef(this.rotation.getZ(), 0, 0, 1);
-    glTranslatef(this.position.getX(), this.position.getY(), this.position.getZ());
     doRender();
     glPopMatrix();
   }
