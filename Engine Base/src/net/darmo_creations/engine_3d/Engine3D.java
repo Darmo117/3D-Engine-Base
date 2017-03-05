@@ -45,6 +45,7 @@ public class Engine3D implements EngineComponent {
   private Camera cam;
   private Scene scene;
   private Dimension viewportSize;
+  private Runnable runnable;
 
   /**
    * Crée une nouvelle instance du moteur.
@@ -54,9 +55,17 @@ public class Engine3D implements EngineComponent {
     this.cam.setProjection(80, .01f, 10000);
     this.scene = new Scene();
     this.viewportSize = new Dimension(800, 600);
+    this.runnable = null;
   }
 
   public void start() {
+    start(null);
+  }
+
+  public void start(Runnable runnable) {
+    if (runnable != null)
+      this.runnable = runnable;
+
     try {
       Display.setDisplayMode(new DisplayMode(this.viewportSize.width, this.viewportSize.height));
       Display.create(new PixelFormat(0, 8, 0, 4));
@@ -148,6 +157,8 @@ public class Engine3D implements EngineComponent {
       Mouse.setGrabbed(true);
     if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE) || Keyboard.isKeyDown(Keyboard.KEY_TAB))
       Mouse.setGrabbed(false);
+    if (this.runnable != null)
+      this.runnable.run();
 
     if (!isEnginePaused()) {
       this.cam.update();
