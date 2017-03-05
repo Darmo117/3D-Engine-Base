@@ -8,6 +8,7 @@ import net.darmo_creations.engine_3d.math.Point3f;
 import net.darmo_creations.engine_3d.math.Vector3f;
 import net.darmo_creations.engine_3d.scene.LocatedObject;
 
+// TODO ne calculer les points q'une seule fois.
 public abstract class Prop extends LocatedObject {
   protected Vector3f rotation;
   protected Color fillColor;

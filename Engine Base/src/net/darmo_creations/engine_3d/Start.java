@@ -5,7 +5,6 @@ import static net.darmo_creations.engine_3d.utils.Logger.*;
 import java.util.Date;
 
 import net.darmo_creations.engine_3d.utils.CrashReport;
-import net.darmo_creations.engine_3d.utils.Logger;
 
 /**
  * Main class.
@@ -14,14 +13,15 @@ import net.darmo_creations.engine_3d.utils.Logger;
  */
 public class Start {
   public static void main(String[] args) {
-    Logger.beginCatchingOutputs(); // Do NOT move elsewhere.
+    beginCatchingOutputs(); // Do NOT move elsewhere.
 
     boolean error = false;
 
     getLogger().info(new Date());
     getLogger().info("Starting...");
     try {
-      Engine3D.getInstance().start();
+      Engine3D.getInstance()
+          .start();
     }
     catch (Throwable ex) {
       getLogger().severe("Error or exception caught: " + ex);
